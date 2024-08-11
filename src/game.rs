@@ -1,11 +1,9 @@
 use std::collections::HashMap;
 use std::hash::Hash;
 
-use colored::Colorize;
 use crate::card::RessourceType;
 use crate::get_and_check_userinput;
 use crate::player::Player;
-use crate::card::Card;
 
 pub fn display_cards(player: &Player){
     for i in 0..player.get_hand().len(){
@@ -14,18 +12,11 @@ pub fn display_cards(player: &Player){
     }
 }
 
-pub fn play_card(card: Card, player: &mut Player){
-    player.add_card_to_board(card);
-
-}
-
 pub fn check_resourses_card(cost: Vec<RessourceType>, player: &Player){
     let cost_map = cost.iter().fold(HashMap::<RessourceType, u32>::new(), |mut acc, &x| {
         *acc.entry(x).or_default() += 1;
         acc
     });
-
-    let player_res_map = player.get_ressource();
 
 }
 

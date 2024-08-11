@@ -1,13 +1,14 @@
-use std::vec::Vec;
+use crate::board::Board;
+
 mod card;
 mod game;
 mod player;
-mod wonders;
+mod board;
 
 fn main() {
-    let mut wonders = wonders::get_wonders();
-    let mut players_list = player::create_players(player::get_nb_of_player(), &mut wonders);
+    let mut players_list = player::create_players(player::get_nb_of_player());
 
+    let game_board = Board::create_board();
     card::give_cards(&mut players_list);
     for player in &players_list {
         game::display_cards(&player)
@@ -34,17 +35,15 @@ pub fn get_and_check_userinput() -> usize{
     }
 }
 //Savoir combien de joueurs jouent
+//Attribuer/Laisser choisir une couleur à chaque joueurs
+//Générer la map -> Preset ou random
+//Laisser les joueurs placer leurs pions chacun leur tour
 //Creer un deck approprié au nombre de joueur
-//Attribuer une merveille à chaque joueurs
-//récupérer les cartes
-//Distribuer les cartes aux joueurs
+//Donner les ressources de départ correspondantes
 //Jouer un tour
-//Chaque joueurs selectionne une carte
-//Vérifier s'il peut la jouer
-//Jouer simultanément toutes les cartes et resoudres leurs effets
-//Passer la main de chaque joueur à son voisin de droite ou gauche
-//Quand plus qu'une carte par main
-//defausse
-//Résoudre les combats
-//distribuer carte de l'âge d'après
-//Quand toutes les cartes de tous les âges ont été jouées, compter les points et nommer le gagnant
+//Joueur lance les dés
+//Attribuer ressource en fonction du résultat
+//Session échange
+//Construction
+//Check points
+//Quand 12 points, fin
