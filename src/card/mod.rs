@@ -44,6 +44,14 @@ pub enum RessourceType {
     Sheep
 }
 
+#[derive(Hash, Eq, PartialEq, Clone, Debug, Copy)]
+pub enum Cost{
+    Road {ressource_type: (RessourceType::Wood, RessourceType::Brick)},
+    Settlement {ressource_type: (RessourceType::Wood, RessourceType::Brick, RessourceType::Wheat, RessourceType::Sheep)},
+    City {ressource_type: (RessourceType::Wheat, RessourceType::Wheat, RessourceType::Ore, RessourceType::Ore, RessourceType::Ore)},
+    Developement {ressource_type: (RessourceType::Wheat, RessourceType::Sheep, RessourceType::Ore)},
+}
+
 fn get_cards(nb_player: usize) -> Vec<Card> {
     let test_card = Card::new(
         "yo test name là".to_string(),

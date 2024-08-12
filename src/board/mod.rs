@@ -1,4 +1,6 @@
 use std::collections::HashMap;
+use crate::card::{Card, CardType, Cost, RessourceType};
+use crate::player::Player;
 
 // Define the structures for HexTile, Vertex, and Edge
 
@@ -19,7 +21,7 @@ struct Vertex {
 struct Edge {
     start_vertex: (i32, i32),
     end_vertex: (i32, i32),
-    road: Option<Player>, // Road owned by a player
+    road: Option<Road>, // Road owned by a player
 }
 
 enum TileType {
@@ -30,9 +32,22 @@ enum TileType {
     Ore,
     Desert,
 }
-
-struct Settlement; // Placeholder for Settlement structure
-struct Player;     // Placeholder for Player structure
+#[derive(Hash, Eq, PartialEq, Debug)]
+pub struct Settlement {
+    level: i32,
+    cost: Cost,
+}
+pub fn create_settlement(level:i32) -> Settlement {
+    let cost: Cost = if level == 1 { Cost::Settlement } else { Cost::City };
+    Settlement {level, cost }
+}
+#[derive(Hash, Eq, PartialEq, Debug)]
+pub struct Road {
+    cost: Cost::Road
+}
+pub fn create_road() -> Road {
+    Road { cost: Cost::Road }
+}
 
 pub struct Board {
     hex_tiles: Vec<HexTile>,

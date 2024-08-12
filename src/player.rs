@@ -1,16 +1,21 @@
-use crate::card::{Card};
+use crate::card::{Card, Cost};
 use colored::Colorize;
+use crate::board::{create_road, create_settlement, Road, Settlement};
 
-#[derive(Hash, Eq, PartialEq, Clone, Debug)]
+#[derive(Hash, Eq, PartialEq, Debug)]
 pub struct Player {
     id: u32,
     hand: Vec<Card>,
+    settlements: Vec<Settlement>,
+    roads: Vec<Road>
 }
 impl Player {
     pub fn new_player(id: u32) -> Player {
         Player {
             id,
             hand: Vec::new(),
+            settlements: vec![create_settlement(1);5].extend(vec![create_settlement(2);4]).collect() ,
+            roads: vec![create_road();15]
         }
     }
 
